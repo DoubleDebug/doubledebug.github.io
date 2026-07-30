@@ -1,7 +1,0 @@
-.tags {
-  justify-content: center;
-}
-
-.tags :nth-child(n + 4) {
-  display: none;
-}
