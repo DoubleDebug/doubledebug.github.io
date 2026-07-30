@@ -1,0 +1,99 @@
+---
+import type { Project } from '../data/content';
+
+type Props = {
+  project: Project;
+  index: number;
+};
+
+const { project, index } = Astro.props;
+const number = String(index + 1).padStart(2, '0');
+---
+
+<a class="work-card" href={`/projects/${project.slug}/`}>
+  <div class="wc-head">
+    <span class="wc-num">{number}</span><span class="wc-arr" aria-hidden="true">↗</span>
+  </div>
+  <h3 class="wc-title">{project.title}</h3>
+  <div class="wc-desc">{project.description}</div>
+  <div class="wc-tags">
+    {project.tags.map((tag) => <span class="wc-tag">{tag}</span>)}
+  </div>
+</a>
+
+<style>
+  .work-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    background: transparent;
+    text-decoration: none;
+  }
+
+  .work-card:hover {
+    background: var(--card-hover);
+    border-color: var(--text-muted);
+    transform: translateY(-1px);
+  }
+
+  .wc-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .wc-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--red);
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+
+  .wc-arr {
+    font-size: 12px;
+    color: var(--text-muted);
+    transition: color 0.15s, transform 0.15s;
+  }
+
+  .work-card:hover .wc-arr {
+    color: var(--text-dim);
+    transform: translate(1px, -1px);
+  }
+
+  .wc-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 6px;
+    letter-spacing: -0.1px;
+  }
+
+  .wc-desc {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 14px;
+  }
+
+  .wc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .wc-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+  }
+</style>

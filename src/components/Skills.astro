@@ -1,0 +1,124 @@
+---
+import { skillGroups, skillTags, skillTagSubtitle } from "../data/content";
+---
+
+<div class="skills-cols">
+  {
+    skillGroups.map((group) => (
+      <div>
+        <h3 class="skill-group-label">{group.label}</h3>
+        <ul class="skill-list">
+          {group.items.map((item) => (
+            <li>
+              <span class="s-dot" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</div>
+
+<p class="sec-sub">{skillTagSubtitle}</p>
+
+<div class="tags-row">
+  {skillTags.map((tag) => <span class="tag">{tag}</span>)}
+</div>
+
+<style>
+  .skills-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 48px;
+  }
+
+  .skill-group-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--red);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+    opacity: 0.85;
+  }
+
+  .skill-list {
+    list-style: none;
+  }
+
+  .skill-list li {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    padding: 6px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.15s;
+  }
+
+  .skill-list li:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .skill-list li:hover {
+    color: var(--text);
+  }
+
+  .s-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--blue);
+    flex-shrink: 0;
+    opacity: 0.5;
+    transition: opacity 0.15s;
+  }
+
+  .skill-list li:hover .s-dot {
+    opacity: 1;
+  }
+
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 18px;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 3px 9px;
+    transition:
+      border-color 0.15s,
+      color 0.15s;
+  }
+
+  .tag:hover {
+    border-color: var(--text-muted);
+    color: var(--text-sub);
+  }
+
+  .sec-sub {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-top: -12px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .skills-cols {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

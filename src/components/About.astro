@@ -1,0 +1,48 @@
+---
+import { aboutFacts } from '../data/content';
+---
+
+<div class="facts">
+  {
+    aboutFacts.map((fact) => (
+      <div class="fact-row">
+        <span class="fact-key">{fact.key}</span>
+        <span class="fact-val">{fact.value}</span>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .facts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fact-row {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 16px;
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .fact-row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .fact-key {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  .fact-val {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    font-weight: 400;
+  }
+</style>

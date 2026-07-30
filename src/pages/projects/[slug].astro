@@ -1,0 +1,223 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { projects } from '../../data/content';
+import type { Project } from '../../data/content';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+type Props = {
+  project: Project;
+};
+
+const { project } = Astro.props;
+
+const facts: { key: string; value: string }[] = [
+  { key: 'company', value: project.company ?? 'Personal project' },
+  { key: 'client', value: project.client ?? '—' },
+  { key: 'team size', value: project.teamSize ?? 'Solo' },
+  { key: 'duration', value: project.duration },
+];
+---
+
+<Layout title={`${project.title} | Dušan Dodić`} description={project.description}>
+  <article>
+    <a class="back-link fi d2" href="/#projects">← back to projects</a>
+
+    <header class="project-head fi d2">
+      <h1>{project.title}</h1>
+      <p class="project-desc">{project.description}</p>
+    </header>
+
+    <div class="facts fi d3">
+      {
+        facts.map((fact) => (
+          <div class="fact-row">
+            <span class="fact-key">{fact.key}</span>
+            <span class="fact-val">{fact.value}</span>
+          </div>
+        ))
+      }
+    </div>
+
+    <section class="fi d3">
+      <h2 class="block-label">overview</h2>
+      <p class="block-text">{project.overview}</p>
+    </section>
+
+    <section class="fi d4">
+      <h2 class="block-label">my role</h2>
+      <p class="block-text">{project.role}</p>
+    </section>
+
+    <section class="fi d4">
+      <h2 class="block-label">highlights</h2>
+      <ul class="highlight-list">
+        {
+          project.highlights.map((highlight) => (
+            <li>
+              <span class="h-dot" />
+              {highlight}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="fi d5">
+      <h2 class="block-label">stack & skills</h2>
+      <div class="tags-row">
+        {project.skills.map((skill) => <span class="tag">{skill}</span>)}
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .back-link {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    margin-bottom: 28px;
+    transition: color 0.18s;
+  }
+
+  .back-link:hover {
+    color: var(--red);
+  }
+
+  .project-head {
+    margin-bottom: 32px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.6px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .facts {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 44px;
+  }
+
+  .fact-row {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: 16px;
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .fact-row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .fact-key {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  .fact-val {
+    font-size: 13.5px;
+    color: var(--text-sub);
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  .block-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--red);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    opacity: 0.85;
+  }
+
+  .block-text {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    line-height: 1.75;
+  }
+
+  .highlight-list {
+    list-style: none;
+  }
+
+  .highlight-list li {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    padding: 6px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    line-height: 1.6;
+  }
+
+  .highlight-list li:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .h-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--blue);
+    flex-shrink: 0;
+    opacity: 0.5;
+    transform: translateY(-2px);
+  }
+
+  .tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--tag-text);
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 3px 9px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .tag:hover {
+    border-color: var(--text-muted);
+    color: var(--text-sub);
+  }
+
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 22px;
+    }
+  }
+</style>

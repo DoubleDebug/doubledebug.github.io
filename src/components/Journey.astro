@@ -1,0 +1,107 @@
+---
+import { journey } from '../data/content';
+---
+
+<div class="timeline">
+  {
+    journey.map((entry) => (
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-date">{entry.date}</div>
+          {entry.badge && (
+            <span class:list={['tl-badge', { b: entry.badge.color === 'blue' }]}>
+              {entry.badge.label}
+            </span>
+          )}
+        </div>
+        <div>
+          <h3 class="tl-role">{entry.role}</h3>
+          <div class="tl-org">{entry.org}</div>
+          <div class="tl-desc">{entry.description}</div>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .timeline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tl-item {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .tl-item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .tl-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tl-date {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .tl-badge {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--red);
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    padding: 1px 6px;
+    width: fit-content;
+    letter-spacing: 0.04em;
+    opacity: 0.75;
+  }
+
+  .tl-badge.b {
+    color: var(--blue);
+  }
+
+  .tl-role {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 2px;
+    letter-spacing: -0.1px;
+  }
+
+  .tl-org {
+    font-size: 13px;
+    color: var(--blue);
+    margin-bottom: 7px;
+    font-weight: 400;
+  }
+
+  .tl-desc {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 480px) {
+    .tl-item {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .tl-left {
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+</style>

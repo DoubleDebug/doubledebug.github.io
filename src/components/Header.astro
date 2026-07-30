@@ -1,0 +1,166 @@
+---
+import { profile } from '../data/content';
+
+const sections = ['about', 'skills', 'projects', 'journey', 'contact'];
+const onHome = Astro.url.pathname === '/';
+const anchorBase = onHome ? '#' : '/#';
+---
+
+<nav class="fi d1" aria-label="Primary Navigation">
+  {
+    onHome ? (
+      <span class="nav-brand">{profile.brand}</span>
+    ) : (
+      <a class="nav-brand nav-brand-link" href="/">
+        {profile.brand}
+      </a>
+    )
+  }
+  <div class="nav-right">
+    <ul class="nav-links">
+      {
+        sections.map((section) => (
+          <li>
+            <a href={`${anchorBase}${section}`}>{section}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <button class="theme-btn" onclick="window.__toggleTheme()" aria-label="Toggle color theme">
+      <span class="tb-to-light">light</span><span class="tb-to-dark">dark</span>
+    </button>
+  </div>
+</nav>
+
+<script is:inline>
+  window.__toggleTheme = function () {
+    var root = document.documentElement;
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch (e) {}
+  };
+</script>
+
+<style>
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 88px;
+  }
+
+  .nav-brand {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-brand-link {
+    text-decoration: none;
+    transition: color 0.18s;
+  }
+
+  .nav-brand-link:hover {
+    color: var(--text);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: color 0.18s, background 0.18s;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+    background: var(--card-hover);
+  }
+
+  .theme-btn {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-dim);
+    background: var(--btn-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    cursor: pointer;
+    transition: color 0.18s, border-color 0.18s, background 0.18s;
+  }
+
+  .theme-btn:hover {
+    color: var(--text);
+    border-color: var(--text-muted);
+  }
+
+  /* The button offers the theme you'd switch to */
+  .tb-to-dark,
+  :global(:root[data-theme='light']) .tb-to-light {
+    display: none;
+  }
+
+  :global(:root[data-theme='light']) .tb-to-dark {
+    display: inline;
+  }
+
+  /* ── ≤640px: brand + toggle on top row, links across the bottom ── */
+  @media (max-width: 640px) {
+    nav {
+      display: grid;
+      grid-template-areas:
+        'brand toggle'
+        'links links';
+      grid-template-columns: 1fr auto;
+      gap: 16px 0;
+      margin-bottom: 48px;
+      align-items: center;
+    }
+
+    .nav-brand {
+      grid-area: brand;
+    }
+
+    .nav-right {
+      display: contents;
+    }
+
+    .theme-btn {
+      grid-area: toggle;
+    }
+
+    .nav-links {
+      grid-area: links;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 8px 0;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 10.5px;
+      padding: 4px 6px;
+    }
+  }
+</style>

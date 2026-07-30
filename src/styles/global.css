@@ -1,0 +1,142 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── DARK (default) ── */
+:root,
+:root[data-theme='dark'] {
+  --bg: #202020;
+  --bg-raised: #2a2a2a;
+  --text: #edebe8;
+  --text-sub: #b0aca6;
+  --text-dim: #a59d95;
+  --text-muted: #8d857f;
+  --border: #333333;
+  --border-soft: #2c2c2c;
+  --red: rgb(225, 90, 78);
+  --blue: rgb(85, 140, 220);
+  --tag-bg: #2c2c2c;
+  --tag-text: #aba39b;
+  --btn-bg: #2e2e2e;
+  --card-hover: #282828;
+  color-scheme: dark;
+}
+
+/* ── LIGHT ── */
+:root[data-theme='light'] {
+  --bg: #f9f8f7;
+  --bg-raised: #f1eeea;
+  --text: #0e1c38;
+  --text-sub: #374151;
+  --text-dim: #58606e;
+  --text-muted: #596270;
+  --border: #e2ddd7;
+  --border-soft: #ede9e4;
+  --red: rgb(205, 59, 46);
+  --blue: rgb(30, 75, 154);
+  --tag-bg: #edeae5;
+  --tag-text: #4b5563;
+  --btn-bg: #f3f2f0;
+  --card-hover: #f1f0ef;
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.3s, color 0.3s;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: 640px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 64px 28px 120px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 0 52px;
+}
+
+/* ── FADE-IN ── */
+.fi {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: up 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes up {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.d1 {
+  animation-delay: 0.04s;
+}
+
+.d2 {
+  animation-delay: 0.12s;
+}
+
+.d3 {
+  animation-delay: 0.2s;
+}
+
+.d4 {
+  animation-delay: 0.28s;
+}
+
+.d5 {
+  animation-delay: 0.36s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fi {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── TABLET (641px – 900px) ── */
+@media (min-width: 641px) and (max-width: 900px) {
+  .wrap {
+    max-width: 100%;
+    padding: 56px 40px 100px;
+  }
+}
+
+/* ── SMALL TABLET / LARGE PHONE (≤640px) ── */
+@media (max-width: 640px) {
+  .wrap {
+    padding: 48px 22px 88px;
+  }
+}

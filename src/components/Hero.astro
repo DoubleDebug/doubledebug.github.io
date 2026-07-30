@@ -1,0 +1,135 @@
+---
+import { Image } from "astro:assets";
+import profilePhoto from "../assets/profile.jpg";
+import { profile } from "../data/content";
+---
+
+<div class="hero fi d2">
+  <div class="hero-name-row">
+    <div class="hero-avatar">
+      <Image
+        src={profilePhoto}
+        alt={profile.fullName}
+        width={240}
+        height={319}
+        fetchpriority="high"
+        loading="eager"
+      />
+    </div>
+    <h1>
+      Hi, I'm <span class="name-red">{profile.firstName}</span>{" "}{
+        profile.lastName
+      }<span class="cursor" aria-hidden="true"></span>
+    </h1>
+  </div>
+  <p class="hero-desc" set:html={profile.description} />
+</div>
+
+<style>
+  .hero {
+    margin-bottom: 80px;
+  }
+
+  .hero-name-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.6px;
+    line-height: 1.2;
+  }
+
+  .name-red {
+    color: var(--red);
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2.5px;
+    height: 0.8em;
+    background: var(--red);
+    margin-left: 1px;
+    vertical-align: middle;
+    border-radius: 1px;
+    animation: blink 1.1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .hero-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+    background: var(--bg-raised);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: border-color 0.2s;
+    position: relative;
+    background: #b0a89f;
+  }
+
+  .hero-avatar:hover {
+    border-color: var(--text-muted);
+  }
+
+  .hero-avatar img {
+    /* The image is larger than the 80px frame, so it can be panned freely. */
+    position: absolute;
+    width: 83%;
+    height: auto;
+    left: 10px;
+    top: 0px;
+    display: block;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--text-sub);
+    max-width: 520px;
+    line-height: 1.75;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor {
+      animation: none;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 900px) {
+    h1 {
+      font-size: 26px;
+    }
+
+    .hero-avatar {
+      width: 74px;
+      height: 74px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      margin-bottom: 64px;
+    }
+
+    h1 {
+      font-size: 22px;
+    }
+
+    .hero-avatar {
+      width: 64px;
+      height: 64px;
+    }
+  }
+</style>

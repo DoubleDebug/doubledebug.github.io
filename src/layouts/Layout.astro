@@ -1,23 +1,68 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { profile, contactLinks } from '../data/content';
+
+type Props = {
+  title: string;
+  description: string;
+};
+
+const { title, description } = Astro.props;
+
+const faviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#202020"/><text x="32" y="43" font-family="monospace" font-size="26" font-weight="600" fill="rgb(225,90,78)" text-anchor="middle">DD</text></svg>`;
+const favicon = `data:image/svg+xml,${encodeURIComponent(faviconSvg)}`;
+
+const jsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: profile.fullName,
+  jobTitle: 'Frontend Engineer',
+  worksFor: { '@type': 'Organization', name: 'Ascalab' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Niš', addressCountry: 'RS' },
+  sameAs: contactLinks.filter((l) => l.href.startsWith('https')).map((l) => l.href),
+});
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={favicon} />
+
+    <meta name="theme-color" content="#202020" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f9f8f7" media="(prefers-color-scheme: light)" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <Font cssVariable="--font-inter" preload />
+    <Font cssVariable="--font-mono" />
+
+    <script is:inline type="application/ld+json" set:html={jsonLd} />
+
+    <!-- Runs before paint so a saved light preference never flashes dark -->
+    <script is:inline>
+      (function () {
+        var theme = 'dark';
+        try {
+          theme = localStorage.getItem('theme') || 'dark';
+        } catch (e) {}
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
-    <slot />
+    <div class="wrap">
+      <Header />
+      <slot />
+      <Footer />
+    </div>
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

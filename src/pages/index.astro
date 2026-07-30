@@ -1,8 +1,75 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import About from '../components/About.astro';
+import Skills from '../components/Skills.astro';
+import Projects from '../components/Projects.astro';
+import Journey from '../components/Journey.astro';
+import Contact from '../components/Contact.astro';
+import { profile, sectionSubtitles } from '../data/content';
 ---
 
-<Layout>
-  <Welcome />
+<Layout
+  title={`${profile.fullName} | Portfolio`}
+  description={`${profile.fullName} — frontend engineer at Ascalab, ${profile.location}. Typescript, React, NextJS, NodeJS, Firebase and Supabase.`}
+>
+  <Hero />
+
+  <div class="divider fi d2"></div>
+
+  <Section id="about" number="01" title="About" subtitle={sectionSubtitles.about} delay="d3">
+    <About />
+  </Section>
+
+  <Section id="skills" number="02" title="Skills" subtitle={sectionSubtitles.skills} delay="d3">
+    <Skills />
+  </Section>
+
+  <Section
+    id="projects"
+    number="03"
+    title="Projects"
+    subtitle={sectionSubtitles.projects}
+    delay="d4"
+  >
+    <Projects />
+  </Section>
+
+  <Section id="journey" number="04" title="Journey" subtitle={sectionSubtitles.journey} delay="d4">
+    <Journey />
+  </Section>
+
+  <Section id="contact" number="05" title="Contact" subtitle={sectionSubtitles.contact} delay="d5">
+    <Contact />
+  </Section>
+
+  <div class="quote fi d5">
+    <p>"{profile.quote}"</p>
+    <span>— {profile.fullName}</span>
+  </div>
 </Layout>
+
+<style>
+  .quote {
+    margin-top: 12px;
+    padding: 40px 0 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .quote p {
+    font-size: 14px;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-bottom: 8px;
+    line-height: 1.7;
+  }
+
+  .quote span {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+  }
+</style>

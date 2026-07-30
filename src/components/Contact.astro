@@ -1,0 +1,71 @@
+---
+import { contactLinks } from "../data/content";
+---
+
+<div class="contact-rows">
+  {
+    contactLinks.map((link) => (
+      <div class="contact-row">
+        <span class="c-platform">{link.platform}</span>
+        <a
+          href={link.href}
+          target={link.href.startsWith("https") ? "_blank" : undefined}
+          rel={
+            link.href.startsWith("https") ? "noopener noreferrer" : undefined
+          }
+        >
+          {link.label}
+        </a>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .contact-rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    padding: 11px 0;
+    border-top: 1px solid var(--border);
+    align-items: baseline;
+  }
+
+  .contact-row:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .c-platform {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .contact-row a {
+    font-size: 13.5px;
+    color: var(--text-sub);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition:
+      color 0.18s,
+      border-color 0.18s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    justify-self: start;
+    max-width: 100%;
+  }
+
+  .contact-row a:hover {
+    color: var(--red);
+    border-color: var(--red);
+  }
+</style>

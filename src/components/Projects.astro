@@ -1,0 +1,22 @@
+---
+import { projects } from '../data/content';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<div class="work-grid">
+  {projects.map((project, index) => <ProjectCard project={project} index={index} />)}
+</div>
+
+<style>
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  @media (max-width: 560px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
