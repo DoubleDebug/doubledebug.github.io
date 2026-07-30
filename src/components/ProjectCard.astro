@@ -1,4 +1,5 @@
 ---
+import { projectPagesEnabled } from '../data/content';
 import type { Project } from '../data/content';
 
 type Props = {
@@ -8,18 +9,23 @@ type Props = {
 
 const { project, index } = Astro.props;
 const number = String(index + 1).padStart(2, '0');
+
+const Tag = projectPagesEnabled ? 'a' : 'div';
+const linkProps = projectPagesEnabled ? { href: `/projects/${project.slug}/` } : {};
 ---
 
-<a class="work-card" href={`/projects/${project.slug}/`}>
+<Tag class:list={['work-card', { 'work-card-link': projectPagesEnabled }]} {...linkProps}>
   <div class="wc-head">
-    <span class="wc-num">{number}</span><span class="wc-arr" aria-hidden="true">↗</span>
+    <span class="wc-num">{number}</span>{
+      projectPagesEnabled && <span class="wc-arr" aria-hidden="true">↗</span>
+    }
   </div>
   <h3 class="wc-title">{project.title}</h3>
   <div class="wc-desc">{project.description}</div>
   <div class="wc-tags">
     {project.tags.map((tag) => <span class="wc-tag">{tag}</span>)}
   </div>
-</a>
+</Tag>
 
 <style>
   .work-card {
@@ -33,7 +39,7 @@ const number = String(index + 1).padStart(2, '0');
     text-decoration: none;
   }
 
-  .work-card:hover {
+  .work-card-link:hover {
     background: var(--card-hover);
     border-color: var(--text-muted);
     transform: translateY(-1px);
@@ -60,7 +66,7 @@ const number = String(index + 1).padStart(2, '0');
     transition: color 0.15s, transform 0.15s;
   }
 
-  .work-card:hover .wc-arr {
+  .work-card-link:hover .wc-arr {
     color: var(--text-dim);
     transform: translate(1px, -1px);
   }

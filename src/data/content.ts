@@ -134,6 +134,13 @@ export const skillTags: string[] = [
   "excalidraw",
 ];
 
+/**
+ * Temporarily disabled: hides the per-project detail pages and turns the
+ * project cards into plain, non-clickable cards. Set back to true to restore
+ * both the pages and their links.
+ */
+export const projectPagesEnabled = false;
+
 export const projects: Project[] = [
   {
     slug: "energy-market",
