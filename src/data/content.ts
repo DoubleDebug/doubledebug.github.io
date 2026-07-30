@@ -150,7 +150,7 @@ export const projects: Project[] = [
     client: "Petrol",
     teamSize: "3–6 people",
     duration: "3 years",
-    tags: ["NextJS", "SignalR", "Typescript", "React query"],
+    tags: ["NextJS", "Typescript", "SignalR"],
     skills: [
       "NextJS",
       "React",
@@ -247,7 +247,7 @@ export const projects: Project[] = [
     client: null,
     teamSize: null,
     duration: "3 months",
-    tags: ["NextJS", "Supabase", "Context engineering"],
+    tags: ["NextJS", "Supabase", "AI"],
     skills: [
       "NextJS",
       "Supabase database",
