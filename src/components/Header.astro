@@ -1,9 +1,9 @@
 ---
-import { profile } from '../data/content';
+import { profile } from "../data/content";
 
-const sections = ['about', 'skills', 'projects', 'journey', 'contact'];
-const onHome = Astro.url.pathname === '/';
-const anchorBase = onHome ? '#' : '/#';
+const sections = ["about", "skills", "projects", "journey", "contact"];
+const onHome = Astro.url.pathname === "/";
+const anchorBase = onHome ? "#" : "/#";
 ---
 
 <nav class="fi d1" aria-label="Primary Navigation">
@@ -26,7 +26,11 @@ const anchorBase = onHome ? '#' : '/#';
         ))
       }
     </ul>
-    <button class="theme-btn" onclick="window.__toggleTheme()" aria-label="Toggle color theme">
+    <button
+      class="theme-btn"
+      onclick="window.__toggleTheme()"
+      aria-label="Toggle color theme"
+    >
       <span class="tb-to-light">light</span><span class="tb-to-dark">dark</span>
     </button>
   </div>
@@ -35,10 +39,10 @@ const anchorBase = onHome ? '#' : '/#';
 <script is:inline>
   window.__toggleTheme = function () {
     var root = document.documentElement;
-    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
     try {
-      localStorage.setItem('theme', next);
+      localStorage.setItem("theme", next);
     } catch (e) {}
   };
 </script>
@@ -86,7 +90,9 @@ const anchorBase = onHome ? '#' : '/#';
     text-decoration: none;
     padding: 4px 8px;
     border-radius: 5px;
-    transition: color 0.18s, background 0.18s;
+    transition:
+      color 0.18s,
+      background 0.18s;
     letter-spacing: 0.01em;
   }
 
@@ -104,7 +110,10 @@ const anchorBase = onHome ? '#' : '/#';
     border-radius: 20px;
     padding: 4px 12px;
     cursor: pointer;
-    transition: color 0.18s, border-color 0.18s, background 0.18s;
+    transition:
+      color 0.18s,
+      border-color 0.18s,
+      background 0.18s;
   }
 
   .theme-btn:hover {
@@ -114,11 +123,11 @@ const anchorBase = onHome ? '#' : '/#';
 
   /* The button offers the theme you'd switch to */
   .tb-to-dark,
-  :global(:root[data-theme='light']) .tb-to-light {
+  :global(:root[data-theme="light"]) .tb-to-light {
     display: none;
   }
 
-  :global(:root[data-theme='light']) .tb-to-dark {
+  :global(:root[data-theme="light"]) .tb-to-dark {
     display: inline;
   }
 
@@ -127,8 +136,8 @@ const anchorBase = onHome ? '#' : '/#';
     nav {
       display: grid;
       grid-template-areas:
-        'brand toggle'
-        'links links';
+        "brand toggle"
+        "links links";
       grid-template-columns: 1fr auto;
       gap: 16px 0;
       margin-bottom: 48px;
@@ -137,6 +146,7 @@ const anchorBase = onHome ? '#' : '/#';
 
     .nav-brand {
       grid-area: brand;
+      margin-left: 5px;
     }
 
     .nav-right {

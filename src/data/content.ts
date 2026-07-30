@@ -145,12 +145,12 @@ export const projects: Project[] = [
   {
     slug: "energy-market",
     title: "Energy Market",
-    description: "Real-time trading platform for electricity and natural gas.",
+    description: "Real-time trading platform for electricity futures.",
     company: "Ascalab",
     client: "Petrol",
     teamSize: "3–6 people",
     duration: "3 years",
-    tags: ["NextJS", "SignalR", "Redux"],
+    tags: ["NextJS", "SignalR", "Typescript", "React query"],
     skills: [
       "NextJS",
       "React",
@@ -184,7 +184,7 @@ export const projects: Project[] = [
     client: "Petrol",
     teamSize: "4–8 people",
     duration: "3.5 years",
-    tags: ["NextJS", "NextAuth", "MUI"],
+    tags: ["NextJS", "NextAuth", "MUI", "DataGridPro"],
     skills: [
       "NextJS",
       "React",
@@ -247,7 +247,7 @@ export const projects: Project[] = [
     client: null,
     teamSize: null,
     duration: "3 months",
-    tags: ["NextJS", "Supabase", "CSP"],
+    tags: ["NextJS", "Supabase", "Context engineering"],
     skills: [
       "NextJS",
       "Supabase database",
@@ -359,11 +359,11 @@ export const journey: JourneyEntry[] = [
   },
   {
     date: "2021 — 2022",
-    badge: { label: "freelance", color: "blue" },
+    badge: { label: "remote", color: "blue" },
     role: "Freelance web developer",
-    org: "Remote",
+    org: "Europe",
     description:
-      "Worked with two European clients. Designed static and dynamic websites using HTML, CSS, Javascript, Typescript. Implemented simple backend services using NodeJS, Express, Firebase and MongoDB. Got introduced to modern UI libraries such as Tailwind and ChakraUI.",
+      "Worked with two European clients. Designed static and dynamic websites using HTML, CSS, Javascript, Typescript. Implemented simple backend services using NodeJS, Express, Firebase and MongoDB. Learned to use modern UI libraries such as Tailwind and ChakraUI.",
   },
   {
     date: "2022 — Now",
@@ -401,7 +401,7 @@ export const contactLinks: ContactLink[] = [
 export const sectionSubtitles = {
   about: "The short version — who I am and what I do.",
   skills: "What I work with day to day — my technical and soft skills.",
-  projects: "Production apps and personal builds — click one for the full story.",
+  projects: "Production apps and personal builds.",
   journey: "From binary numbers in Pečenjevce to production apps in Niš.",
   contact: "Whether it’s frontend, architecture or just a good conversation — always open.",
 } as const;
