@@ -368,7 +368,7 @@ export const journey: JourneyEntry[] = [
   {
     date: "2022 — Now",
     badge: { label: "on-site", color: "red" },
-    role: "Software engineer",
+    role: "Frontend engineer",
     org: "Ascalab",
     description:
       "Full time frontend developer in Niš, working on multiple agile projects with teams of 3–6 people. Developed and maintained production-ready projects using NextJS, React and Typescript. Worked and communicated directly with clients, often involved in the full process of software delivery. Received feedback from senior mentors and got to work with some amazing engineers (and people!).",
