@@ -60,11 +60,10 @@ export const profile: Profile = {
   description: `
   <ul>
     <li>
-    I'm a full time frontend engineer at <a href="https://ascalab.com/">Ascalab</a>,
-    a Slovenian company focused on software development and product testing.
+    I'm a full-stack engineer, specialized in web technologies.
     </li>
     <li>
-    I've been drawn to the full process of software development ever since I discovered
+    I've been drawn to the entire process of software development ever since I discovered
     it in middle school.
     </li>
     <li>
@@ -77,7 +76,7 @@ export const profile: Profile = {
 };
 
 export const aboutFacts: AboutFact[] = [
-  { key: "role", value: "Frontend engineer @ Ascalab" },
+  { key: "role", value: "Full stack engineer" },
   { key: "location", value: "Niš, Serbia" },
   { key: "education", value: "Faculty of Electronic Engineering, Niš" },
   {
@@ -217,7 +216,7 @@ export const projects: Project[] = [
     client: "Bridgehead",
     teamSize: "4–6 people",
     duration: "1 year",
-    tags: ["React", "EntraID", "Docker"],
+    tags: ["React", "EntraID", "Docker", "AI"],
     skills: [
       "React",
       "Typescript",
@@ -304,7 +303,7 @@ export const projects: Project[] = [
   },
   {
     slug: "drag-n-crop",
-    title: "Drag ’n’ Crop",
+    title: "Drag 'n' Crop",
     description: "Image and video cropping web tool.",
     company: null,
     client: null,
@@ -371,7 +370,7 @@ export const journey: JourneyEntry[] = [
     role: "Frontend engineer",
     org: "Ascalab",
     description:
-      "Full time frontend developer in Niš, working on multiple agile projects with teams of 3–6 people. Developed and maintained production-grade projects using NextJS, React and Typescript. Worked and communicated directly with clients, often involved in the full process of software delivery. Received feedback from senior mentors and got to work with some amazing engineers (and people!).",
+      "Full time software developer in Niš, working on multiple agile projects with teams of 3–6 people. Developed and maintained production-grade projects using NextJS, React and Typescript. Worked and communicated directly with clients, often involved in the full process of software delivery. Received feedback from senior mentors and got to work with some amazing engineers (and people!).",
   },
 ];
 
